@@ -12,8 +12,11 @@ import { setLocal } from '@/common/js/utils'
 import router from '../router'
 
 console.log('import.meta.env', import.meta.env)
+console.log('appname', import.meta.env.VITE_APPNAME)
+console.log('username', import.meta.env.VITE_USERNAME)
+console.log('address', import.meta.env.VITE_API_ADDRESS)
 
-axios.defaults.baseURL = import.meta.env.MODE == 'development' ? '//backend-api-01.newbee.ltd/api/v1' : '//backend-api-01.newbee.ltd/api/v1'
+// axios.defaults.baseURL = import.meta.env.VITE_API_ADDRESS
 axios.defaults.withCredentials = true
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
 axios.defaults.headers['token'] = localStorage.getItem('token') || ''
@@ -24,9 +27,9 @@ axios.interceptors.response.use(res => {
     showFailToast('服务端异常！')
     return Promise.reject(res)
   }
-  if (res.data.resultCode != 200) {
+  if (res.data.status != 200) {
     if (res.data.message) showFailToast(res.data.message)
-    if (res.data.resultCode == 416) {
+    if (res.data.status == 416) {
       router.push({ path: '/login' })
     }
     if (res.data.data && window.location.hash == '#/login') {
@@ -38,5 +41,7 @@ axios.interceptors.response.use(res => {
 
   return res.data
 })
+
+
 
 export default axios

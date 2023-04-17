@@ -1,7 +1,8 @@
 # huahua
-open huahua 
 
-1、创建vite项目 `npm create vite@latest`
+open huahua
+
+1、创建 vite 项目 `npm create vite@latest`
 
 `npm run dev`
 

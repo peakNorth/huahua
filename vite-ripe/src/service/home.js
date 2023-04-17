@@ -13,3 +13,6 @@ export function getHome() {
   return axios.get('/index-infos');
 }
 
+export function getMe() {
+  return axios.post('api/ctl/ping');
+}
