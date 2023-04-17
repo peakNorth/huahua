@@ -17,6 +17,8 @@ console.log('username', import.meta.env.VITE_USERNAME)
 console.log('address', import.meta.env.VITE_API_ADDRESS)
 
 // axios.defaults.baseURL = import.meta.env.VITE_API_ADDRESS
+axios.defaults.baseURL = "/api"
+axios.defaults.timeout = "2000"
 axios.defaults.withCredentials = true
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
 axios.defaults.headers['token'] = localStorage.getItem('token') || ''

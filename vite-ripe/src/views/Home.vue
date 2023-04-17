@@ -10,7 +10,12 @@
 
 <template>
     <div>
-        
+        <router-link to="./pwdmg">
+            <p v-show="!state.isLogin"> 注册</p>
+        </router-link>
+        <p v-show="state.isLogin"> 欢迎</p>
+        {{ state.showMsg }}
+
     </div>
 </template>
 
@@ -24,6 +29,7 @@ import { showLoadingToast, closeToast, showToast } from 'vant'
 const router = useRouter()
 const state = reactive({
     isLogin: false, // 是否已登录
+    showMsg: "",
     loading: true
 })
 onMounted(async () => {
@@ -37,6 +43,7 @@ onMounted(async () => {
     });
     const { data } = await getMe()
     console.log(data)
+    state.showMsg = data;
     state.loading = false
     closeToast()
 })
@@ -51,6 +58,4 @@ nextTick(() => {
 
 </script>
 
-<style lang="less" scoped >
-
-</style>
+<style lang="less" scoped ></style>

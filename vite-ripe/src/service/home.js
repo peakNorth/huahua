@@ -14,5 +14,5 @@ export function getHome() {
 }
 
 export function getMe() {
-  return axios.post('api/ctl/ping');
+  return axios.post('/ctl/ping');
 }
